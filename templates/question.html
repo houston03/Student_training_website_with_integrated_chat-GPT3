@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<h1>Thetl</h1>
+
+<a href="/mainpage">Чат-GPT3</a>
+    <div class="content_vid_new">
+        <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Типы данных</h4>
+            <p style="font-size: 15px">Изменяемые:</p>
+<p style="font-size: 13px">Списки <br>Словари <br>Множества<br> Байтовые массивы</p>
+            <p style="font-size: 15px">Не изменяемые:</p>
+<p style="font-size: 13px">Числа <br>Строки <br>Диапазон<br> Буллево выражение<br>ФрозенСет<br>НонТайп<br>Байт<br>Кортеж</p>
+        </div>
+     <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Контекстный менеджер:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px">Объект логику которого определяет момент входа в блок и выхода из него, используя методы (синхронные __enter__, __exit__)(ассинхронные __aenter__, __aexit__))</p>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px">Самым популярным КМ является класс с функцией Open внутри, ведь она гарантирует закрытие файла, даже если в блоке есть ошибка, тем самым сохранив ресурс ПК.</p>
+        </div>
+
+    </div>
+{% endblock %}
+</body>
+</html>
