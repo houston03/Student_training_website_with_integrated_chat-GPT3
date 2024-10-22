@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<h1>Thetl</h1>
+
+<a href="/mainpage">Чат-GPT3</a>
+    <div class="content_vid_new">
+        <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Типы данных</h4>
+            <p style="font-size: 15px">Изменяемые:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Списки(list) <br>Словари(dict) <br>Множества(set)<br> Байтовые массивы</p>
+            <p style="font-size: 15px">Не изменяемые:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Числа(int, float, long, complex) <br>Строки <br>Диапазон(range)<br> Булево выражение(True/False)<br>FrozenSet<br>NoneType<br>Байт(byte)<br>Кортеж(tupl)</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">|age = 25  # int Целое число|<br>|colors = ["красный", "синий", "зеленый"]  # Списки|<br>|coordinates = (10, 20)  # Кортеж|<br>|person = {"имя": "Иван", "возраст": 25, "город": "Москва"}  # Словарь| <br>|numbers = {1, 2, 3, 4, 4} # Множество| </p>
+        </div>
+     <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Контекстный менеджер</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Объект логику которого определяет момент входа в блок и выхода из него, используя методы (синхронные __enter__, __exit__)(ассинхронные __aenter__, __aexit__)</p>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Самым популярным КМ является класс с функцией Open внутри, ведь она гарантирует закрытие файла, даже если в блоке есть ошибка, тем самым сохранив ресурс ПК.</p>
+     <h4 style="margin: 2px; color: #333;">Пример:</h4>
+         <p style="font-size: 15px">Открытие и закрытие файлов:</p>
+         <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">with open('file.txt', 'r') as file:<br>
+  content = file.read()<br>
+  print(content)</p>
+         <br>
+         <p style="font-size: 15px">Создание собственных контекстных менеджеров:</p>
+         <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class MyResource:<br>
+  def __enter__(self):<br>
+    print("Открытие ресурса")<br>
+    #  Инициализация  ресурса<br>
+    return self<br>  #  Возвращаем  себя,  чтобы  использовать  в  блоке  `with`<br>
+
+  def __exit__(self, exc_type, exc_val, exc_tb):<br>
+    print("Закрытие ресурса")<br>
+    #  Очистка  ресурса<br>
+    return False <br> #  Возвращаем  `False`,  чтобы  передать  исключение  внешнему  коду</p>
+     </div>
+         <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Итераторы и генераторы</h4>
+            <p style="font-size: 15px">Генератор</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Генераторы - это функция, которая с помощью выражения yield генерирует последовательность значений, также реализует такие методы как __iter__() и __next__(). Так как в памяти генератора находится один элемент, итерировать может только его(сохранив больше ОП).</p>
+            <p style="font-size: 15px">Итератор</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Итератор реализует такие методы как __iter__() и __next__(), iter-возвращает итератор, а next-возвращает следущий элемент последовательности, после вызывает исключение StopIteration</p>
+     <h4 style="margin: 2px; color: #333;">Пример:</h4>
+         <p style="font-size: 15px">Генератор:</p>
+         <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def squares(n):<br>
+    for i in range(n):<br>
+        yield i ** 2<br>
+
+for square in squares(5):<br>
+    print(square)</p>
+             <br>
+         <p style="font-size: 15px">Итератор:</p>
+         <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class MyIterator:<br>
+    def __init__(self, data):<br>
+        self.data = data<br>
+        self.index = 0<br>
+
+    def __iter__(self):<br>
+        return self<br>
+
+    def __next__(self):<br>
+        if self.index < len(self.data):<br>
+            value = self.data[self.index]<br>
+            self.index += 1<br>
+            return value<br>
+        else:<br>
+            raise StopIteration<br>
+
+my_list = [1, 2, 3, 4, 5]<br>
+my_iterator = MyIterator(my_list)<br>
+
+for item in my_iterator:<br>
+    print(item)</p>
+     </div>
+<div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Методы __new__, __init__</h4>
+            <p style="font-size: 15px">__new__:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">__new__ обрабатывает создание объекта. Вызывается при вызове имени класса</p>
+            <p style="font-size: 15px">__init__:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">__init__ обрабатывает инициализацию созданного объекта. Вызывается после возвращения экземпляра класса в __new__, передавая его в __init__ в качестве параметра self. </p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class MyCustomClass:<br>
+    def __new__(cls, *args, **kwargs):<br>
+        print("Вызывается __new__")<br>
+        instance = super().__new__(cls) <br>
+        return instance<br>
+
+    def __init__(self, name, age):<br>
+        print("Вызывается __init__")<br>
+        self.name = name<br>
+        self.age = age<br>
+
+person = MyCustomClass("Иван", 25)<br>
+
+print(person.name)  # Вывод: Иван<br>
+print(person.age)  # Вывод: 25<br></p>
+        </div>
+    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Декораторы</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Декоратор - это функция, которая принимает функцию с таким же именем, но с более расширенным функционалом, часто используется во фреймвроках.</p>
+
+
+        <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def log_function_call(func):<br>
+  def wrapper(*args, **kwargs):<br>
+    print(f"Вызывается функция {func.__name__} с аргументами: {args}, {kwargs}")<br>
+    result = func(*args, **kwargs)<br>
+    print(f"Функция {func.__name__} возвращает результат: {result}")<br>
+    return result<br>
+  return wrapper<br>
+
+@log_function_call<br>
+def add(x, y):<br>
+  return x + y<br>
+
+print(add(2, 3))<br>
+
+            log_function_call(func): Эта функция принимает другую функцию в качестве аргумента и возвращает новую функцию wrapper.</p>
+        </div>
+
+<div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Объектно-ориентированное программирование</h4>
+            <p style="font-size: 15px">Абстрация:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Скрытие внутренних характеристик функции от пользователя.</p>
+            <p style="font-size: 15px">Полиморфизм:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Использование одной функции для разных форм(типов данных).</p>
+             <p style="font-size: 15px">Наследование:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Способ создания класса. Функциональность нового класса(дочернего) наследнуется от уже существующего класса(базового)</p>
+     <p style="font-size: 15px">Инкапсуляция:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Ограничение доступа к переменным, методам, для предотвращения модификации данных.</p>
+    <h4 style="margin: 2px; color: #333;">Пример:</h4>
+    <p style="font-size: 15px">Наследование:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class Animal:<br>
+  def __init__(self, name):<br>
+    self.name = name<br>
+
+  def speak(self):<br>
+    print(f"{self.name} говорит!")<br>
+
+class Dog(Animal):<br>
+  def speak(self):<br>
+    print(f"{self.name} лает!")<br>
+
+class Cat(Animal):<br>
+  def speak(self):<br>
+    print(f"{self.name} мяукает!")<br>
+
+my_dog = Dog("Рекс")<br>
+my_cat = Cat("Мурка")<br>
+
+my_dog.speak()  # Вывод: Рекс лает!<br>
+my_cat.speak()  # Вывод: Мурка мяукает!<br></p>
+    <br>
+    <p style="font-size: 15px">Абстракция:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">from abc import ABC, abstractmethod<br>
+
+class Shape(ABC):<br>
+  @abstractmethod<br>
+  def area(self):<br>
+    pass<br>
+
+class Circle(Shape):<br>
+  def __init__(self, radius):<br>
+    self.radius = radius<br>
+
+  def area(self):<br>
+    return 3.14 * self.radius ** 2<br>
+
+class Rectangle(Shape):<br>
+  def __init__(self, width, height):<br>
+    self.width = width<br>
+    self.height = height<br>
+
+  def area(self):<br>
+    return self.width * self.height<br>
+
+circle = Circle(5)<br>
+rectangle = Rectangle(4, 6)<br>
+
+print(circle.area())  # Вывод: 78.5<br>
+print(rectangle.area())  # Вывод: 24<br></p>
+    <br>
+    <p style="font-size: 15px">Инкапсуляция:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class BankAccount:<br>
+  def __init__(self, balance):<br>
+    self.__balance = balance<br>
+
+  def deposit(self, amount):<br>
+    self.__balance += amount<br>
+
+  def withdraw(self, amount):<br>
+    if self.__balance >= amount:<br>
+      self.__balance -= amount<br>
+      print("Снятие  успешно")<br>
+    else:<br>
+      print("Недостаточно  средств")<br>
+
+  def get_balance(self):<br>
+    return self.__balance<br>
+
+account = BankAccount(1000)<br>
+
+account.deposit(500)<br>
+account.withdraw(200)<br>
+print(account.get_balance())  # Вывод: 1300<br></p>
+        </div>
+<div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Базы данных и индексы</h4>
+            <p style="font-size: 15px">Виды БД:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">1)Реляционные базы данных-Данные хранятся в таблицах с определенной структурой (строки и столбцы), где столбцы имеют определенный тип данных.Используют SQL (Structured Query Language) для запросов, обновления и управления данными.Обеспечивают целостность данных с помощью ограничений (PRIMARY KEY, FOREIGN KEY, UNIQUE), что гарантирует консистентность и точность информации.
+<br>2)Нереляционные базы данных (NoSQL)-Не требуют жесткой структуры таблиц. Данные могут храниться в разных форматах, например, в виде ключ-значение, документов, графов.Используют специализированные языки запросов или API, которые отличаются от SQL.</p>
+            <p style="font-size: 15px">Индексы:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Индекс-это объект БД, позволяющий быстрее выполнять запросы к БД. Индекс формируется из значений одного или нескольких столбцов и указателей на соответстующие строки.</p>
+
+</div>
+    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Лямбда-функция</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Лямбда-функция-это функция, которая не требует написания ключевого слова def, она же пишется в одну строку с ключевым словом lambda и используется для быстрого определения небольшой функции(также используются в качестве аргументов функции высшего порядка).</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">double = lambda x: x*2</p>
+
+</div>
+    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">PEP - 8</h4>
+            <p style="font-size: 15px">Python Enhancement proposal 8</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">PEP - 8-это рекомендации по написанию кода, содержит стилевые соглашения, которые повышают читабельность кода, делая его более понятным, расширяемым и поддерживаемым.</p>
+
+</div>
+     <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">SOLID</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">SOLID-это аббревиатура, обозначающая набор из пяти принципов объектно-ориентированного проектирования, которые помогают создавать более качественный и поддерживаемый код.</p>
+            <h4 style="margin: 2px; color: #333;"></h4>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"><br>S - Single Responsibility Principle (Принцип единственной ответственности): Каждый класс должен иметь одну и только одну причину для изменения. Это значит, что класс должен выполнять одну конкретную задачу, и его код должен быть посвящен только этой задаче.
+<br>O - Open/Closed Principle (Принцип открытости/закрытости): Классы должны быть открыты для расширения, но закрыты для изменения. Это означает, что вы можете добавлять новую функциональность в класс, не изменяя его исходный код.
+<br>L - Liskov Substitution Principle (Принцип подстановки Лискова): Подтипы должны быть заменяемы на родительские типы без нарушения корректности программы. Это означает, что вы можете использовать подтип вместо родительского типа, не заботясь о том, что код будет работать неправильно.
+<br>I - Interface Segregation Principle (Принцип разделения интерфейса): Клиенты не должны зависеть от методов, которые им не нужны. Это означает, что вы должны разбивать интерфейсы на меньшие, более специфичные интерфейсы, чтобы клиенты использовали только те методы, которые им действительно нужны.
+<br>D - Dependency Inversion Principle (Принцип инверсии зависимостей): Модули верхнего уровня не должны зависеть от модулей нижнего уровня. Оба должны зависеть от абстракций. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций.</p>
+
+</div>
+    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Документация по атрибутам</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Документацию по атрибутам объекта можно получить используя атрибут .doc <br>Также можно использовать встроенную функцию help(), передав в нее объект.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">print(attribute.__doc__)<br>help(attribute)</p>
+
+</div>
+        <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Docstring</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Такой строкой описывают, что делает метод, функция, класс или модуль в Python. Используется для генерации документации автоматически. В других случаях используется для создания описания API.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def add_num(a, b):<br> """This function takes in two"""<br>return a + b</p>
+
+</div>
+        <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">Аннотации</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Аннотации-это возможность указывать типы при объявлении переменных, полей класса, функций.<br> Для переменных-после имени переменной (str, int, list...)<br>Для параметров функций-синтаксис работает так же, но добавляется "->".</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">Простые аннотации:</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def greet(name: str) -> str:<br>
+  """Приветствует пользователя."""<br>
+  return f"Привет, {name}!"<br>
+    <br></p>
+    <p style="font-size: 15px"> Аннотации для списков и словарей:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">
+def sum_numbers(numbers: list[int]) -> int:<br>
+  """Суммирует числа в списке."""<br>
+  total = 0<br>
+  for number in numbers:<br>
+    total += number<br>
+  return total</p>
+
+</div>
+            <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+    </div>
+{% endblock %}
+</body>
+</html>
