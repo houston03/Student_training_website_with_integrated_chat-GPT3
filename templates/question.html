@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+          rel="stylesheet" />
+<script src="/static/js/style.js" defer></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Thetl</title>
 </head>
 <body>
 {% block content %}
 <h1>Thetl</h1>
 
 <a href="/mainpage">Чат-GPT3</a>
+    <form action="/search" method="POST" style="  position: relative;
+
+  margin: 0 auto;">
+        <input type="text" name="search_term" placeholder="Поиск...">
+        <button class="main" type="submit"><i class="bi bi-search"></i></button>
+    </form>
     <div class="content_vid_new">
-        <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="overlay"></div>
+
+        <div class="container" style="background-color: rgba(200,255,200,0.32);">
+            <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Типы данных</h4>
             <p style="font-size: 15px">Изменяемые:</p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Списки(list) <br>Словари(dict) <br>Множества(set)<br> Байтовые массивы</p>
@@ -20,7 +33,9 @@
             <h4 style="margin: 2px; color: #333;">Пример:</h4>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">|age = 25  # int Целое число|<br>|colors = ["красный", "синий", "зеленый"]  # Списки|<br>|coordinates = (10, 20)  # Кортеж|<br>|person = {"имя": "Иван", "возраст": 25, "город": "Москва"}  # Словарь| <br>|numbers = {1, 2, 3, 4, 4} # Множество| </p>
         </div>
-     <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+
+     <div class="container" >
+<button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Контекстный менеджер</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Объект логику которого определяет момент входа в блок и выхода из него, используя методы (синхронные __enter__, __exit__)(ассинхронные __aenter__, __aexit__)</p>
@@ -44,7 +59,9 @@
     #  Очистка  ресурса<br>
     return False <br> #  Возвращаем  `False`,  чтобы  передать  исключение  внешнему  коду</p>
      </div>
-         <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+
+         <div class="container" >
+<button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Итераторы и генераторы</h4>
             <p style="font-size: 15px">Генератор</p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Генераторы - это функция, которая с помощью выражения yield генерирует последовательность значений, также реализует такие методы как __iter__() и __next__(). Так как в памяти генератора находится один элемент, итерировать может только его(сохранив больше ОП).</p>
@@ -82,12 +99,13 @@ my_iterator = MyIterator(my_list)<br>
 for item in my_iterator:<br>
     print(item)</p>
      </div>
-<div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+<div class="container" >
+<button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Методы __new__, __init__</h4>
             <p style="font-size: 15px">__new__:</p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">__new__ обрабатывает создание объекта. Вызывается при вызове имени класса</p>
             <p style="font-size: 15px">__init__:</p>
-<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">__init__ обрабатывает инициализацию созданного объекта. Вызывается после возвращения экземпляра класса в __new__, передавая его в __init__ в качестве параметра self. </p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">__init__ обрабатывает инициализацию созданного объекта. Вызывается после (при создании нового экземпляра класса) возвращения экземпляра класса в __new__, передавая его в __init__ в качестве параметра self. </p>
             <h4 style="margin: 2px; color: #333;">Пример:</h4>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class MyCustomClass:<br>
     def __new__(cls, *args, **kwargs):<br>
@@ -105,8 +123,10 @@ person = MyCustomClass("Иван", 25)<br>
 print(person.name)  # Вывод: Иван<br>
 print(person.age)  # Вывод: 25<br></p>
         </div>
-    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+<button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Декораторы</h4>
+
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Декоратор - это функция, которая принимает функцию с таким же именем, но с более расширенным функционалом, часто используется во фреймвроках.</p>
 
@@ -118,7 +138,7 @@ print(person.age)  # Вывод: 25<br></p>
     result = func(*args, **kwargs)<br>
     print(f"Функция {func.__name__} возвращает результат: {result}")<br>
     return result<br>
-  return wrapper<br>
+  return wrapper<br><br>
 
 @log_function_call<br>
 def add(x, y):<br>
@@ -126,11 +146,12 @@ def add(x, y):<br>
 
 print(add(2, 3))<br>
 
-            log_function_call(func): Эта функция принимает другую функцию в качестве аргумента и возвращает новую функцию wrapper.</p>
+            log_function_call(func): <br><br>Эта функция принимает другую функцию в качестве аргумента и возвращает новую функцию wrapper.</p>
         </div>
 
-<div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
-            <h4 style="margin: 2px; color: #333;">Объектно-ориентированное программирование</h4>
+<div class="container" >
+<button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Объектно-ориентированное программирование<br>(ООП)</h4>
             <p style="font-size: 15px">Абстрация:</p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Скрытие внутренних характеристик функции от пользователя.</p>
             <p style="font-size: 15px">Полиморфизм:</p>
@@ -215,7 +236,8 @@ account.deposit(500)<br>
 account.withdraw(200)<br>
 print(account.get_balance())  # Вывод: 1300<br></p>
         </div>
-<div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+<div class="container" >
+    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Базы данных и индексы</h4>
             <p style="font-size: 15px">Виды БД:</p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">1)Реляционные базы данных-Данные хранятся в таблицах с определенной структурой (строки и столбцы), где столбцы имеют определенный тип данных.Используют SQL (Structured Query Language) для запросов, обновления и управления данными.Обеспечивают целостность данных с помощью ограничений (PRIMARY KEY, FOREIGN KEY, UNIQUE), что гарантирует консистентность и точность информации.
@@ -224,7 +246,8 @@ print(account.get_balance())  # Вывод: 1300<br></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Индекс-это объект БД, позволяющий быстрее выполнять запросы к БД. Индекс формируется из значений одного или нескольких столбцов и указателей на соответстующие строки.</p>
 
 </div>
-    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+        <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Лямбда-функция</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Лямбда-функция-это функция, которая не требует написания ключевого слова def, она же пишется в одну строку с ключевым словом lambda и используется для быстрого определения небольшой функции(также используются в качестве аргументов функции высшего порядка).</p>
@@ -232,13 +255,15 @@ print(account.get_balance())  # Вывод: 1300<br></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">double = lambda x: x*2</p>
 
 </div>
-    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+        <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">PEP - 8</h4>
             <p style="font-size: 15px">Python Enhancement proposal 8</p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">PEP - 8-это рекомендации по написанию кода, содержит стилевые соглашения, которые повышают читабельность кода, делая его более понятным, расширяемым и поддерживаемым.</p>
 
 </div>
-     <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+     <div class="container" >
+         <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">SOLID</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">SOLID-это аббревиатура, обозначающая набор из пяти принципов объектно-ориентированного проектирования, которые помогают создавать более качественный и поддерживаемый код.</p>
@@ -250,7 +275,8 @@ print(account.get_balance())  # Вывод: 1300<br></p>
 <br>D - Dependency Inversion Principle (Принцип инверсии зависимостей): Модули верхнего уровня не должны зависеть от модулей нижнего уровня. Оба должны зависеть от абстракций. Абстракции не должны зависеть от деталей. Детали должны зависеть от абстракций.</p>
 
 </div>
-    <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+        <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Документация по атрибутам</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Документацию по атрибутам объекта можно получить используя атрибут .doc <br>Также можно использовать встроенную функцию help(), передав в нее объект.</p>
@@ -258,7 +284,8 @@ print(account.get_balance())  # Вывод: 1300<br></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">print(attribute.__doc__)<br>help(attribute)</p>
 
 </div>
-        <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+        <div class="container" >
+            <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Docstring</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Такой строкой описывают, что делает метод, функция, класс или модуль в Python. Используется для генерации документации автоматически. В других случаях используется для создания описания API.</p>
@@ -266,7 +293,8 @@ print(account.get_balance())  # Вывод: 1300<br></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def add_num(a, b):<br> """This function takes in two"""<br>return a + b</p>
 
 </div>
-        <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+        <div class="container" >
+            <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Аннотации</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Аннотации-это возможность указывать типы при объявлении переменных, полей класса, функций.<br> Для переменных-после имени переменной (str, int, list...)<br>Для параметров функций-синтаксис работает так же, но добавляется "->".</p>
@@ -286,7 +314,670 @@ def sum_numbers(numbers: list[int]) -> int:<br>
   return total</p>
 
 </div>
-            <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <div class="container" >
+                <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Конструкция pass</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">pass является пустым оператором. Он используется там, где оператор нужен, но никаких действий выполнять не нужно.(заглушка)</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def my_func():<br>pass</p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Многопоточное и многопроцессорное приложение</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Отличаются использованием ресурсов ПК. В многопроцессорных приложениях каждый процесс имеет свой собственный набор ресурсов. Многопоточное приложение выполняется в рамках одного процесса, используя общие ресурсы. </p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">*args и **kwargs</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">*args и **kwargs-это спецальные параметры, позволяющие передавать переменное количество аргументов в функцию.<br> *args представляет собой кортеж из всех доп.аргументов переданных функции.<br> **kwargs представляет собой словарь из доп. именованных аргументов, переданных функции.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def print_arguments(*args, **kwargs):<br>
+  """Выводит позиционные и именованные аргументы."""<br>
+  print(f"Позиционные аргументы: {args}")<br>
+  print(f"Именованные аргументы: {kwargs}")<br>
+
+print_arguments(1, 2, 3, name="Иван", age=25)<br> # Вывод:<br>
+                                              # Позиционные аргументы: (1, 2, 3)<br>
+                                              # Именованные аргументы: {'name': 'Иван', 'age': 25}<br></p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Атрибут dict</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">dict содержит словарь, который хранит атрибуты объекта в виде пар ключ-значение.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class Dog:<br>
+    def __init__(self, name, breed):<br>
+        self.name = name<br>
+        self.breed = breed<br>
+
+    def bark(self):<br>
+        print(f"{self.name} лает!")<br>
+
+my_dog = Dog("Рекс", "Овчарка")<br>
+print(my_dog.__dict__)  <br># Вывод: {'name': 'Рекс', 'breed': 'Овчарка'}</p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">self</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Ключевое слово self используется для обращения к текущему объекту класса. Оно передается как первый аргумент в методы класса и позволяет работать с атрибутами и методами объекта класса внутри этих методов.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class Person:<br>def __init__(self, name):<br>self.name = name<br> def hello(self):<br>print(f"Hello, my name is {self.name}")</p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Синхронный код</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Синхронный код-это код, который выполняется последоваетльно, и блокирует выполнение других задач до его завершения.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">items = [1, 2, 3, 4, 5]<br>for item in items:<br>print(item)</p>
+
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Здесь цикл будет обрабатывать каждый элемент списка и не будет переходить к следующему элементу пока не завершится обработка текущего элемента.</p>
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Асинхронный код</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Асинхронный код-это подход к написанию кода, который позволяет выполнять несколько задачь одновременно в рамках одного процесса.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">import asyncio<br>async def hello():<br>await asyncio.sleep(1)<br>print('hello')<br><br>>async def world():<br>await asyncio.sleep(2)<br>print('world')<br><br>async def main():<br>await asyncio.gather(hello(), world())<br>if __name__ == "__main__":<br>asyncio.run(main())</p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Интерполяция строк</h4>
+            <p style="font-size: 15px"> </p>
+       <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Интерполяция строк в Python — это способ вставки значений переменных непосредственно в строку.</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Без импорта класса Template есть три способа интерполяции строк:</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">name = 'Chris'<br><br>
+
+# 1. f strings<br>
+print(f'Hello {name}')<br><br>
+
+# 2. % operator<br>
+print('Hey %s %s' % (name, name))<br><br>
+
+# 3. format<br>
+print(
+ "My name is {}".format((name))
+)</p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">is и ==</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">is проверяет идентичность, а == проверяет равенство.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">a = [1,2,3]<br>
+b = a<br>
+c = [1,2,3]<br><br>
+
+
+
+print(a == b)<br>
+print(a == c)<br>
+#=> True<br>
+#=> True<br><br>
+
+
+
+print(a is b)<br>
+print(a is c)<br>
+#=> True<br>
+#=> False</p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Разница между func и func()</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">func — это представляющий функцию объект, который можно назначить переменной или передать другой функции. Функция func() с круглыми скобками вызывает функцию и возвращает результат.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def func():<br>
+    print('Im a function')<br><br>
+
+func<br>
+#=> function __main__.func><br>
+func()    <br>
+#=> Im a function</p>
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Функция map</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Она возвращает объект (итератор), который перебирает значения, применяя функцию к каждому элементу. В случае необходимости объект можно преобразовать в список.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def add_three(x):<br>
+    return x + 3<br>
+li = [1,2,3]<br>
+list(map(add_three, li))<br>
+#=> [4, 5, 6]</p>
+
+
+</div>
+                <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Методы объекта</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Чтобы посмотреть все методы и атрибуты, связанные с определенным объектом в Python, можно использовать функцию dir(). Она принимает объект в виде аргумента и возвращает список имен всех атрибутов и методов объекта. Например, если нужно увидеть все методы и атрибуты, связанные с объектом my_list</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">my_list = [1, 2, 3]<br>
+print(dir(my_list))</p>
+
+
+</div>
+
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">globals() и locals()</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">globals() и locals() - это встроенные функции в Python, которые возвращают словари глобальных и локальных переменных соответственно.<br><br>
+
+globals() возвращает словарь, содержащий все глобальные переменные, доступные в текущей области видимости, включая встроенные переменные.<br><br>
+
+locals() возвращает словарь, содержащий все локальные переменные, определенные в текущей области видимости. Это включает аргументы функции и переменные, которым присвоено значение внутри функции.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">x = 5<br>
+y = 10<br>
+
+def my_func(z):<br>
+    a = 3<br>
+    print(globals())  # выводит все глобальные переменные<br>
+    print(locals())   # выводит все локальные переменные<br>
+
+my_func(7)</p>
+
+
+</div>
+
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Пакеты и модули</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Модуль - это файл, содержащий код Python, который может быть повторно использован в других программах.
+
+Пакет - это директория, содержащая один или несколько модулей (или пакетов внутри пакетов), а также специальный файл init.py, который выполняется при импорте пакета. Он может содержать код, который инициализирует переменные, функции и классы, и становится доступным для использования внутри модулей, находящихся внутри этого пакета.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">import mymodule # импортируем модуль <br>
+from mypackage import mymodule # импортируем модуль из пакета<br>
+from mypackage.mymodule import myfunction # импортируем функцию из модуля в пакете</p>
+
+
+</div>
+
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">@classmethod, @staticmethod, @property</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">@classmethod, @staticmethod, and @property - это декораторы методов класса в языке Python.</p>
+        <br><p style="font-size: 15px">@classmethod</p><br>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">декоратор используется для создания методов, которые будут работать с классом в целом, а не с отдельным экземпляром. В качестве первого параметра этот метод принимает класс, а не экземпляр объекта, и часто используется для создания фабричных методов и методов, которые работают с класс-уровнем методов.</p>
+        <br><p style="font-size: 15px">@staticmethod</p><br>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">декоратор работает подобно @classmethod, но он не получает доступ к классу в качестве первого параметра.</p>
+        <br><p style="font-size: 15px">@property</p><br>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">декоратор используется для создания свойств объекта, которые можно получить и задать, но выглядят как обычные атрибуты объекта. Это позволяет управлять доступом к атрибутам объекта, установив условиями доступа и возможностью заложить дополнительную логику при чтении, установке или удалении атрибута.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class MyClass:<br>
+    def __init__(self, value):<br>
+        self._value = value<br><br>
+
+    @classmethod<br>
+    def from_string(cls, input_string):<br>
+        value = process_input_string(input_string)<br>
+        return cls(value)<br><br>
+
+    @staticmethod<br>
+    def process_input_string(input_string):<br>
+        # implementation details<br><br>
+
+    @property<br>
+    def value(self):<br>
+        return self._value<br><br>
+
+    @value.setter<br>
+    def value(self, new_value):<br>
+        if new_value < 0:<br>
+            raise ValueError("Value must be positive")<br>
+        self._value = new_value</p>
+
+
+</div>
+
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Метод id()</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Метод id() используется для получения уникального целочисленного идентификатора (адреса в памяти) объекта. Этот идентификатор может быть использован для сравнения объектов, поскольку два объекта будут иметь одинаковый идентификатор только в том случае, если это один и тот же объект в памяти.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">a = [1, 2, 3]<br>
+b = a<br>
+print(id(a))  # выведет адрес в памяти объекта a<br>
+print(id(b))  # выведет адрес в памяти объекта b</p>
+
+
+</div>
+
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Процесс компиляции в python</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Python — это интерпретируемый язык, а это значит, что он не требует компиляции, как C или C++. Вместо этого интерпретатор Python читает и выполняет исходный код напрямую. Однако Python использует форму компиляции, называемую компиляцией байт-кода.
+    <br><br>Когда сценарий Python запускается в первый раз, интерпретатор компилирует его в байтовый код, представляющий собой низкоуровневое представление исходного кода. Затем этот байт-код выполняется виртуальной машиной Python (PVM), которая представляет собой интерпретатор, который считывает байт-код и выполняет его.
+
+<br><br>Байт-код хранится в каталоге pycache с расширением .pyc. Python проверяет, есть ли у файла .py уже соответствующий файл .pyc, и, если файл .pyc старше файла .py, он компилирует файл .py в новый файл .pyc.
+
+<br><br>Таким образом, процесс «компиляции» в Python включает интерпретатор, который компилирует исходный код в байтовый код, который затем выполняется PVM. Однако этот процесс происходит автоматически и за кулисами, без необходимости пользователю явно вызывать отдельный шаг компиляции.</p>
+
+
+</div>
+
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Дескрипторы</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Дескрипторы - это объекты Python, которые определяют, как другие объекты должны вести себя при доступе к атрибуту. Дескрипторы могут использоваться для реализации протоколов, таких как протокол доступа к атрибутам, протокол дескрипторов и протокол методов.
+
+<br><br>Декораторы - это функции Python, которые принимают другую функцию в качестве аргумента и возвращают новую функцию. Декораторы обычно используются для изменения поведения функции без изменения ее исходного кода.</p>
+
+
+</div>
+
+        <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Интернирование строк</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Интернирование строк - это процесс, при котором две или более строковые переменные, содержащие одинаковое значение, ссылаются на один и тот же объект в памяти. В Python интернирование строк происходит автоматически при создании строковых констант в исходном коде программы. Это означает, что если две или более строковые константы содержат одинаковое значение, они будут ссылаются на один и тот же объект в памяти.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">a = 'hello'<br>
+b = 'hello'<br>
+print(a is b) # True, потому что обе переменные ссылаются на один и тот же объект в памяти<br><br>
+
+c = 'hello world'<br>
+d = 'hello world'<br>
+print(c is d) # False, потому что строка "hello world" длиннее 5 символов и не является интернированной<br><br>
+
+e = '_123'<br>
+f = '_123'<br>
+print(e is f) # True, потому что строка содержит только цифры и символ '_'</p>
+
+
+</div>
+        <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Исключения в Python</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Для обработки исключений Python предоставляет конструкцию из трех слов: try, except и finally.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">try:<br>
+    # попробовать сделать это
+except:<br>
+    # если блок try не сработал, попробовать это
+finally:<br>
+    # всегда делать это</p>
+
+
+</div>
+        <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">GIL</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">GIL (Global Interpreter Lock) - это механизм в интерпретаторе CPython , который гарантирует, что только один поток исполнения может выполнять байт-код Python в любой момент времени. Это было добавлено в Python для обеспечения безопасности потоков в многопоточной среде и для упрощения реализации интерпретатора.
+
+GIL всё ещё существует, потому что он является важной частью интерпретатора CPython и его логики работы с потоками. Однако, недавние версии Python имеют некоторые механизмы для обхода ограничений GIL, такие как использование многопроцессных вычислений вместо многопоточных и использование асинхронного программирования. Кроме того, есть и другие реализации языка Python, такие как Jython и IronPython, которые не используют GIL.</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Виртуальное окружение</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Виртуальное окружение - это механизм, который позволяет создавать изолированные окружения для установки и использования пакетов Python. Это полезно, когда вам нужно установить определенную версию пакета или когда вам нужно иметь одновременный доступ к разным версиям библиотек в зависимости от проекта.
+
+Создание виртуального окружения позволяет изолировать зависимости проекта от системных зависимостей и других проектов, работающих на той же машине. Это помогает избежать конфликтов зависимостей, что может привести к ошибкам и сбоям.</p>
+
+
+</div>
+        <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Docker</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"> Docker-это платформа для разработки, доставки и запуска приложений в контейнерах. Она обеспечивает изоляцию ресурсов и зависимостей, что позволяет разрабатывать, тестировать и развёртывать приложения быстро и надёжно.</p>
+<h4 style="margin: 2px; color: #333;">Пример:</h4>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Docker Desktop: Установите Docker Desktop для вашей операционной системы (Windows, macOS, Linux).<br>
+Dockerfile: Создайте файл Dockerfile в корневой директории вашего проекта.<br>
+    Создание Dockerfile:<br>
+# Базовый образ с Python 3.9<br>
+FROM python:3.9<br><br>
+
+# Установка рабочей директории<br>
+WORKDIR /app<br><br>
+
+# Копирование всех файлов проекта в рабочую директорию<br>
+COPY . .<br><br>
+
+# Установка зависимостей (из файла requirements.txt)<br>
+RUN pip install -r requirements.txt<br><br>
+
+# Определение точки входа приложения (например, main.py)<br>
+CMD ["python", "main.py"]<br>
+
+Сборка образа Docker:<br><br>
+
+Откройте терминал в директории проекта.<br>
+Выполните команду:<br>
+docker build -t my-python-app . <br>
+ Запуск контейнера Docker:<br><br>
+
+Выполните команду:<br>
+docker run -p 5000:5000 my-python-app</p>
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Методы</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Методы в Python - это функции, определенные внутри класса, которые могут быть вызваны на экземпляре этого класса или на самом классе. Методы предоставляют способ для объектов класса взаимодействовать с данными, хранящимися внутри объекта, а также для выполнения действий, которые связаны с этими данными.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class Person:<br>
+    def __init__(self, name, age):<br>
+        self.name = name<br>
+        self.age = age<br><br>
+
+    def get_name(self):<br>
+        return self.name<br><br>
+
+    def get_age(self):<br>
+        return self.age<br></p>
+
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Здесь метод init - это конструктор класса, который инициализирует атрибуты name и age, а методы get_name и get_age предоставляют доступ к их значениям.</p>
+
+</div>
+        <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">NumPy</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">NumPy - это библиотека для языка программирования Python, которая позволяет работать с массивами и матрицами числовых данных с высокой эффективностью. Она предоставляет множество функций для операций над этими массивами и матрицами, в том числе математических операций, операций линейной алгебры, операций фурье-анализа и многое другое.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">import numpy as np<br>
+
+arr = np.empty(7, dtype=float)<br>arr = np.zeros(7, dtype=float)</p>
+
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Обе функции создают массив заданного размера и типа, но не инициализируют его значениями, поэтому значения элементов будут случайными или нулевыми. Для создания массива со значениями по умолчанию можно использовать numpy.full().</p>
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Удаления файла в Python</h4>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Можно использовать метод os.remove() из модуля os. Например, чтобы удалить файл с именем "file.txt".<br>Также можно использовать метод os.unlink(), который делает то же самое. Разница между ними заключается только в том, что os.unlink() является синонимом для os.remove().</p>
+
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">import os<br>
+
+os.remove("file.txt")<br><br>
+import shutil<br>
+
+shutil.rmtree("my_directory")<br></p>
+
+
+</div>
+        <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">append() и extend()</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Метод append() предназначен для добавления элемента в конец списка, в то время как метод extend() используется для добавления элементов из другого списка в конец текущего списка.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">a = [1, 2, 3]<br>
+b = [4, 5, 6]<br><br>
+
+a.append(b)<br>
+print(a) # выводит [1, 2, 3, [4, 5, 6]]<br><br>
+
+a = [1, 2, 3]<br>
+b = [4, 5, 6]<br>
+
+a.extend(b)<br>
+print(a) # выводит [1, 2, 3, 4, 5, 6]</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Функция reduce</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">reduce принимает функцию и последовательность — и проходит по этой последовательности. На каждой итерации в функцию передаются как текущий элемент, так и выходные данные предыдущего элемента. В конце концов, возвращается одно значение.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">from functools import reduce<br>
+def add_three(x,y):<br>
+    return x + y<br>
+li = [1,2,3,5]<br>
+reduce(add_three, li)<br>
+#=> 11</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Функция filter</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Функция делает буквально то, о чем говорит ее название: она фильтрует элементы в последовательности.
+
+Каждый элемент передается функции, которая включает его в последовательность, если по условию получает True, и отбрасывает в случае False:</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">def add_three(x):<br>
+    if x % 2 == 0:<br>
+        return True<br>
+    else:<br>
+        return False<br>
+
+li = [1,2,3,4,5,6,7,8]<br>
+
+[i for i in filter(add_three, li)]<br>
+#=> [2, 4, 6, 8]</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">JSON</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">JSON — просто строка, которая следует заданному формату и предназначена для передачи данных.</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">any() и all()</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Any возвращает true, если хоть один элемент в последовательности соответствует условию, то есть является true.<br><br>
+
+All возвращает true только в том случае, если условию соответствуют все элементы в последовательности.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">a = [False, False, False]<br>
+b = [True, False, False]<br>
+c = [True, True, True]<br><br>
+
+print( any(a) )<br>
+print( any(b) )<br>
+print( any(c) )<br>
+#=> False<br>
+#=> True<br>
+#=> True<br><br>
+
+print( all(a) )<br>
+print( all(b) )<br>
+print( all(c) )<br>
+#=> False<br>
+#=> False<br>
+#=> True</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">enumerate()</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">enumerate() позволяет отслеживать индекс при итерации последовательности. Это более нативный способ, чем определение и приращение целого числа, представляющего индекс.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">li = ['a','b','c','d','e']<br>
+
+for idx,val in enumerate(li):<br>
+print(idx, val)<br>
+#=> 0 a<br>
+#=> 1 b<br>
+#=> 2 c<br>
+#=> 3 d<br>
+#=> 4 e</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Тернарный (условный) оператор </h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Тернарный (условный) оператор — это однострочный оператор if/else.
+
+Синтаксис такой: a if condition else b.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">x = 5<br>
+y = 10<br><br>
+
+'greater' if x > 6 else 'less'<br>
+#=> 'less'<br><br>
+
+'greater' if y > 6 else 'less'<br>
+#=> 'greater'</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Атрибут slots</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Атрибут slots в классе Python используется для оптимизации памяти и ускорения работы с объектами класса. Он позволяет явно указать, какие атрибуты объекта будут использоваться, а какие нет.
+
+Когда вы определяете класс, Python создает для каждого экземпляра этого класса словарь, который содержит все его атрибуты. Это может быть выгодным в том случае, если у вас много различных атрибутов, но может привести к большому расходу памяти, если вы создаете много экземпляров класса с небольшим количеством атрибутов.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class Person:<br>
+    __slots__ = ['name', 'age']<br><br>
+
+    def __init__(self, name, age):<br>
+        self.name = name<br>
+        self.age = age</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Метаклассы</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Метаклассы - это классы, которые определяют поведение других классов. Они используются для изменения способа, которым Python создает и обрабатывает классы.
+
+Метаклассы могут быть полезны в следующих случаях:<br>
+
+При необходимости динамического изменения поведения класса, например, если вы хотите добавить или удалить атрибут или метод класса во время выполнения программы.<br><br>
+
+При создании классов из данных, которые не заранее известны. Например, вы можете создавать классы на основе определенных условий во время выполнения программы.<br><br>
+
+Для создания фреймворков и библиотек, которые нужно настраивать под конкретные требования и при этом сохранить простоту интерфейса.</p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">class MyMeta(type):<br>
+    def __new__(cls, name, bases, dct):<br>
+        dct['my_attribute'] = 42<br>
+        return super(MyMeta, cls).__new__(cls, name, bases, dct)<br><br>
+
+class MyClass(metaclass=MyMeta):<br>
+    pass<br><br>
+
+print(MyClass.my_attribute)</p>
+
+
+</div>
+    <div class="container" style="background-color: rgba(200,255,200,0.32);">
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Что такое REST API?</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">REST API — это набор правил для взаимодействия между приложениями через HTTP протокол. Он использует стандартные HTTP методы (GET, POST, PUT, DELETE) для выполнения различных действий, таких как получение данных, создание, обновление и удаление ресурсов.</p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Зачем нужен pdb?</h4>
+            <p style="font-size: 15px">pdb - это интерактивный отладчик для Python, с помощью которого можно перемещаться по коду во время запуска вашей программы, смотреть и изменять значения переменных, построчно навигироваться по коду (в том числе углубляться во вложенности кода), назначать брейкпоинты и все прочие операции присущие отладчику.
+
+Модуль pdb предоставляет интерфейс командной строки, который можно использовать для взаимодействия с кодом Python во время его выполнения. Вы можете войти в режим pdb в своей программе Python, вставив следующую строку кода там, где вы хотите остановить отладчик: импортировать PDB.</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">import pdb<br>
+pdb.set_trace()</p>
+
+
+</div>
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">Какие паттерны проектирования есть в Python?</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Паттерны программирования в Python — это проверенные и эффективные решения для часто возникающих задач в области разработки программного обеспечения. <br>
+
+Паттерны программирования обычно делятся на три основных типа: <br><br>
+
+Порождающие паттерны. Создание объектов и их инициализация. Примеры: Singleton, Factory Method, Abstract Factory, Builder, Prototype. <br><br>
+Структурные паттерны. Определение отношений между объектами, обеспечивающих гибкость и расширяемость кода. Примеры: Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy. <br><br>
+Поведенческие паттерны. Определение взаимодействия между объектами, управление потоком выполнения и обработка событий. Примеры: Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor. </p>
+
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -297,7 +988,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -308,7 +1000,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -319,7 +1012,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -330,7 +1024,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -341,7 +1036,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -352,7 +1048,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -363,7 +1060,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -374,7 +1072,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -385,7 +1084,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -396,7 +1096,8 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
@@ -407,7 +1108,20 @@ def sum_numbers(numbers: list[int]) -> int:<br>
             <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
 
 </div>
-                <div class="container" style="padding: 10px; background-color: rgba(255,255,255,0.32); border-radius: 15px;margin: 5px; height: 170px; width: 170px">
+    <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
+            <h4 style="margin: 2px; color: #333;">None</h4>
+            <p style="font-size: 15px"></p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
+            <h4 style="margin: 2px; color: #333;">Пример:</h4>
+            <p style="font-size: 15px">none</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+    <p style="font-size: 15px"> none:</p>
+            <p style="font-size: 13px; font-family: sans-serif; font-style: italic;">none</p>
+
+</div>
+            <div class="container" >
+                    <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">None</h4>
             <p style="font-size: 15px"></p>
 <p style="font-size: 13px; font-family: sans-serif; font-style: italic;"></p>
