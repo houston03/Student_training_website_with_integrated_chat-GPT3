@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
+import requests
 
 app = Flask(__name__)
+
+api_key = "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"
+
 
 @app.route('/mainpage', methods=['GET', 'POST'])
 def mainpage():
@@ -18,42 +22,30 @@ def mainpage():
 
         generated_text = ""
         for question in questions:
-            # Обработайте каждый вопрос отдельно
-            from transformers import AutoTokenizer, AutoModelForCausalLM
-            import torch
+            question = question.strip()  # Убедитесь, что лишние пробелы удалены
+            if not question:
+                continue  # Пропустите пустые вопросы
+            try:
+                # Отправка запроса к API
+                response = requests.post(
+                    "https://api-inference.huggingface.co/models/google/gemma-2-2b-it",
+                    headers={'Authorization': f'Bearer {api_key}'},
+                    json={'inputs': question}
+                )
+                response.raise_for_status()
 
-            DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+                # Получение ответа
+                answer = response.json()
+                if isinstance(answer, list) and len(answer) > 0:
+                    # Удаляем пробелы перед ответом
+                    # Убираем дублирование вопроса из ответа
+                    generated_text += answer[0]['generated_text'].replace(question, '').strip() + " "
+                else:
+                    generated_text += "Ошибка: нет ответа. "  # Обработка случая, если ответ пуст
 
-            model_name = "Vikhrmodels/Vikhr-Llama-3.2-1B-instruct"
-            model = AutoModelForCausalLM.from_pretrained(model_name)
-            tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-            input_ids = tokenizer.batch_encode_plus(
-                [question],  # Передаем вопрос в модель
-                add_special_tokens=True,
-                return_tensors="pt",
-                padding="longest",
-                truncation=True,
-            )['input_ids'].to(DEVICE)
-            attention_mask = tokenizer(question, return_tensors="pt")['attention_mask'].to(DEVICE)
-
-            if len(attention_mask[0]) != len(input_ids[0]):
-                print("Ошибка: attention_mask не соответствует input_ids")
-                return render_template('mainpage.html', generated_text="Ошибка")
-
-            out = model.generate(
-                input_ids,
-                attention_mask=attention_mask,
-                do_sample=True,
-                temperature=0.3,
-                top_k=20,
-                top_p=0.8,
-                max_length=45,
-                no_repeat_ngram_size=2,
-                repetition_penalty=1.2,
-            )
-            # Убираем начало текста и добавляем пробел
-            generated_text += list(map(tokenizer.decode, out))[0].replace('<|begin_of_text|>', '').strip() + " "
+            except requests.exceptions.HTTPError as err:
+                print(f"Ошибка: {err}")
+                return render_template('mainpage.html', generated_text="Ошибка: не удалось получить ответ от API.")
 
     return render_template('mainpage.html', generated_text=generated_text)
 
