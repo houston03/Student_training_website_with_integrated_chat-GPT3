@@ -24,9 +24,9 @@ def mainpage():
 
             DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-            model_name = "sberbank-ai/rugpt3large_based_on_gpt2"
+            model_name = "Vikhrmodels/Vikhr-Llama-3.2-1B-instruct"
+            model = AutoModelForCausalLM.from_pretrained(model_name)
             tokenizer = AutoTokenizer.from_pretrained(model_name)
-            model = AutoModelForCausalLM.from_pretrained(model_name).to(DEVICE)
 
             input_ids = tokenizer.batch_encode_plus(
                 [question],  # Передаем вопрос в модель
@@ -45,14 +45,15 @@ def mainpage():
                 input_ids,
                 attention_mask=attention_mask,
                 do_sample=True,
-                temperature=1.3,
+                temperature=0.3,
                 top_k=20,
                 top_p=0.8,
-                max_length=50,
+                max_length=45,
                 no_repeat_ngram_size=2,
                 repetition_penalty=1.2,
             )
-            generated_text += question + " " + list(map(tokenizer.decode, out))[0].replace('<s>', '') + " "
+            # Убираем начало текста и добавляем пробел
+            generated_text += list(map(tokenizer.decode, out))[0].replace('<|begin_of_text|>', '').strip() + " "
 
     return render_template('mainpage.html', generated_text=generated_text)
 
