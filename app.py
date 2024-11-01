@@ -17,14 +17,14 @@ def mainpage():
 
         questions = text.split("?")
 
-        if not questions:  # Проверка на пустой список
+        if not questions:  
             return render_template('mainpage.html', generated_text="Ошибка: пожалуйста, введите вопрос.")
 
         generated_text = ""
         for question in questions:
-            question = question.strip()  # Убедитесь, что лишние пробелы удалены
+            question = question.strip()
             if not question:
-                continue  # Пропустите пустые вопросы
+                continue  
             try:
                 # Отправка запроса к API
                 response = requests.post(
@@ -34,14 +34,13 @@ def mainpage():
                 )
                 response.raise_for_status()
 
-                # Получение ответа
+              
                 answer = response.json()
                 if isinstance(answer, list) and len(answer) > 0:
-                    # Удаляем пробелы перед ответом
-                    # Убираем дублирование вопроса из ответа
+                 
                     generated_text += answer[0]['generated_text'].replace(question, '').strip() + " "
                 else:
-                    generated_text += "Ошибка: нет ответа. "  # Обработка случая, если ответ пуст
+                    generated_text += "Ошибка: нет ответа. " 
 
             except requests.exceptions.HTTPError as err:
                 print(f"Ошибка: {err}")
@@ -66,7 +65,7 @@ def search():
     for container in html_content.split('<div class="container"'):
         if search_term in container.lower():
             # Извлечение текста из блока
-            start_index = container.find('>') + 1  # Найти начало текста
+            start_index = container.find('>') + 1  
             end_index = container.rfind('<')  # Найти конец текста
             extracted_text = container[start_index:end_index].strip()
             search_results.append(extracted_text)
