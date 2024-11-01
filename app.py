@@ -66,7 +66,7 @@ def search():
         if search_term in container.lower():
             # Извлечение текста из блока
             start_index = container.find('>') + 1  
-            end_index = container.rfind('<')  # Найти конец текста
+            end_index = container.rfind('<')  
             extracted_text = container[start_index:end_index].strip()
             search_results.append(extracted_text)
 
