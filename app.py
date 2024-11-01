@@ -58,19 +58,19 @@ def search():
     search_term = request.form['search_term'].lower()
     search_results = []
 
-    # Забираем текст из всех блоков 'container'
+
     with open('templates/question.html', 'r', encoding='utf-8') as f:
         html_content = f.read()
 
     for container in html_content.split('<div class="container"'):
         if search_term in container.lower():
-            # Извлечение текста из блока
+    
             start_index = container.find('>') + 1  
             end_index = container.rfind('<')  
             extracted_text = container[start_index:end_index].strip()
             search_results.append(extracted_text)
 
-    # Проверка на пустой список
+
     if not search_results:
         return render_template('search.html', search_results=None) 
 
