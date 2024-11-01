@@ -72,7 +72,7 @@ def search():
 
     # Проверка на пустой список
     if not search_results:
-        return render_template('search.html', search_results=None)  # Передаем None
+        return render_template('search.html', search_results=None) 
 
     return render_template('search.html', search_results=search_results)
 
