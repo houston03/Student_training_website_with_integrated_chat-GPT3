@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 api_key = "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"
 
-
+'''
 @app.route('/mainpage', methods=['GET', 'POST'])
 def mainpage():
     generated_text = ""
@@ -47,6 +47,8 @@ def mainpage():
                 return render_template('mainpage.html', generated_text="Ошибка: не удалось получить ответ от API.")
 
     return render_template('mainpage.html', generated_text=generated_text)
+'''
+
 
 @app.route('/')
 def question():
