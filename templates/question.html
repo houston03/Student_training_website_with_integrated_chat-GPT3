@@ -765,23 +765,31 @@ shutil.rmtree("my_directory")<br></p>
 </div>
         <div class="container" >
                     <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
-            <h4 style="margin: 2px; color: #333;">append() и extend()</h4>
+            <h4 style="margin: 2px; color: #333;">slots</h4>
             <p style="font-size: 15px"></p>
-<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">Метод append() предназначен для добавления элемента в конец списка, в то время как метод extend() используется для добавления элементов из другого списка в конец текущего списка.</p>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">это механизм, который накладывает ограничения на атрибуты, которые может иметь экземпляр класса. Это приводит к небольшому улучшению производительности и безопасности данных, но используется не так часто, как кажется на первый взгляд.<br>Плюсы:Уменьшение потребления памяти, Улучшение безопасности данных, Предотвращение ошибок.</p>
             <h4 style="margin: 2px; color: #333;">Пример:</h4>
 
-<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">a = [1, 2, 3]<br>
-b = [4, 5, 6]<br><br>
+<p style="font-size: 13px; font-family: sans-serif; font-style: italic;">
+          class MyClass:<br>
+    __slots__ = ['name', 'age']<br><br>
 
-a.append(b)<br>
-print(a) # выводит [1, 2, 3, [4, 5, 6]]<br><br>
+    def __init__(self, name, age):<br>
+        self.name = name<br>
+        self.age = age<br><br>
 
-a = [1, 2, 3]<br>
-b = [4, 5, 6]<br>
+    def greet(self):<br>
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")<br><br>
 
-a.extend(b)<br>
-print(a) # выводит [1, 2, 3, 4, 5, 6]</p>
+# Пример использования<br>
+obj = MyClass("Alice", 30)<br>
+obj.greet()<br>
 
+# Попытка добавить новый атрибут вызовет ошибку<br>
+try:<br>
+    obj.city = "New York"<br>
+except AttributeError as e:<br>
+    print(f"Ошибка: {e}")  # Выведет ошибку, связанную с добавлением атрибута<br>
 
 </div>
             <div class="container" >
