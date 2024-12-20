@@ -12,6 +12,52 @@
 <body>
 {% block content %}
 <h1>Thetl</h1>
+<style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .light-mode {
+            background-color: white;
+            color: black;
+        }
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+        .theme-toggle {
+            cursor: pointer;
+            padding: 15px;
+            font-family: sans-serif;
+            display: inline-block;
+            border: 2px solid rgba(120, 120, 120, 0.2);
+            border-radius: 15px;
+            position: absolute;
+            top: 10px;
+            height: 27px;
+            right: 10px;
+            font-size: 24px; /* Увеличиваем размер иконки */
+        }
+        .theme-toggle i {
+            font-size: 30px; /* Увеличиваем размер иконки */
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="theme-toggle" onclick="toggleTheme()"><i class="bi bi-lightbulb"></i></div>
+
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            }
+        }
+    </script>
 
 
     <form action="/search" method="POST" style="  position: relative;
