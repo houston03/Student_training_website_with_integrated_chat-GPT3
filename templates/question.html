@@ -15,39 +15,55 @@
 <style>
         body {
             transition: background-color 0.3s, color 0.3s;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
         :root {
-            --icon-color: black; /* Цвет иконки для светлого режима */
+            --bg-color: #f9f9f9; /* Светлый фон */
+            --text-color: black; /* Текст для светлого режима */
+            --icon-color: #333; /* Цвет иконки для светлого режима */
+
+
         }
-        }
-        .light-mode {
-            background-color: #eee;
-            color: black;
-        }
+         .light-mode {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+
+         }
         .dark-mode {
-            background-color: black;
-            color: black;
-            --icon-color: white; /* Цвет иконки для темного режима */      
+            background-color: #1a1a1a; /* Темный фон */
+            color: black; /* Текст для темного режима */
+            --icon-color: #eee; /* Цвет иконки для темного режима */
+            --container-bg: rgba(50, 50, 50, 0.8);
         }
-        
+
+
         .theme-toggle {
             cursor: pointer;
-            padding: 15px;
-            font-family: sans-serif;
+            padding: 10px; /* Уменьшил отступы */
             display: inline-block;
-            border: 2px solid rgba(120, 120, 120, 0.2);
+            border: 1px solid rgba(120, 120, 120, 0.2);
             border-radius: 15px;
             position: absolute;
             top: 10px;
-            height: 27px;
             right: 10px;
-            font-size: 24px; /* Увеличиваем размер иконки */
+            font-size: 20px; /* Уменьшил размер иконки */
+            background-color: transparent;
+            color: var(--text-color);
+
         }
+         .theme-toggle:hover {
+              background-color: rgba(120, 120, 120, 0.2);
+         }
         .theme-toggle i {
-            font-size: 30px; /* Увеличиваем размер иконки */
-                  color: var(--icon-color);
+             font-size: 24px; /* Уменьшил размер иконки */
+            color: var(--icon-color);
+            vertical-align: middle;
         }
+
     </style>
-</head>
+
 <body class="light-mode">
     <div class="theme-toggle" onclick="toggleTheme()"><i class="bi bi-lightbulb"></i></div>
 
@@ -55,12 +71,17 @@
     <script>
         function toggleTheme() {
             const body = document.body;
+            const icon = document.querySelector('.theme-toggle i');
             if (body.classList.contains('light-mode')) {
                 body.classList.remove('light-mode');
                 body.classList.add('dark-mode');
+                icon.classList.remove('bi-brightness-high-fill');
+                icon.classList.add('bi-moon-stars-fill');
             } else {
                 body.classList.remove('dark-mode');
                 body.classList.add('light-mode');
+                icon.classList.remove('bi-moon-stars-fill');
+                icon.classList.add('bi-brightness-high-fill');
             }
         }
     </script>
@@ -76,7 +97,7 @@
 
     <div class="content_vid_new">
     <div class="overlay"></div>
-<div class="container1" style="width: 100%; color: #333;"><h2>Основы Python</h2></div>
+<div class="container1" style="width: 100%; color: rgba(129,135,138,0.7);"><h2>Основы Python</h2></div>
         <div class="container">
             <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Типы данных</h4>
@@ -964,7 +985,7 @@ y = 10<br><br>
 
 
 </div>
-              <div class="container1" style="width: 100%; color: #333;"><h2>Другое</h2></div>
+              <div class="container1" style="width: 100%; color: rgba(129,135,138,0.7);"><h2>Другое</h2></div>
             <div class="container" >
                     <button style="top: 5px; left: 0px; position: absolute; width: 20px;height: 20px; background-color: rgba(51,255,59,0); border: none; cursor: pointer" class="full" type="submit"><i class="bi bi-arrows-fullscreen"></i></button>
             <h4 style="margin: 2px; color: #333;">Атрибут slots</h4>
